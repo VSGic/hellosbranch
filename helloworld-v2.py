@@ -6,4 +6,4 @@ names = ['Polina','Igor', 'Michail']
 for i in names:
 	Hellofunc(i)
 else:
-	print('Thank you, everybody!')
+	print('Thank you, everybody and me!')
