@@ -1,5 +1,6 @@
 from platform import platform
 import sys, os
+import hello_logs
 
 def checkforhellos(listofprograms):
     global count
@@ -25,18 +26,26 @@ print('Выберите, пожалуйста, "Hello, world", который в
 listofhellos = os.listdir()
 listofprograms = []
 checkforhellos(listofprograms)
+hello_logs.make_log_hello('start program', 'info')
 
 try:
     requesthello = input('Введите номер варианта ---> ')
     numberofhello = int(requesthello)
     if numberofhello > count or numberofhello <= 0:
-        print('Ошибка! Нет такого варианта!')
-        sys.exit()
+    	print('Ошибка! Нет такого варианта!')
+    	hello_logs.make_log_hello('Error!', 'error')
+    	sys.exit()
 except EOFError: 
-    print('Ошибка! Внезапный конец файла!')
+	print('Ошибка! Внезапный конец файла!')
+	hello_logs.make_log_hello('Error!', 'error')
 except KeyboardInterrupt:
-    print('Ошибка! Вы отменили операцию!')
+	print('Ошибка! Вы отменили операцию!')
+	hello_logs.make_log_hello('Error!', 'error')
 except ValueError:
-    print('Ошибка! Введено неправильное значение!')
+	print('Ошибка! Введено неправильное значение!')
+	hello_logs.make_log_hello('Error!', 'error')
 else:
-    startthehello(numberofhello, listofprograms)
+	logs_temp = 'Chosen ' + str(numberofhello)
+	hello_logs.make_log_hello(logs_temp, 'info')
+	startthehello(numberofhello, listofprograms)
+hello_logs.make_log_hello('end program', 'info')
